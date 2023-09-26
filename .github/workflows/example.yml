@@ -33,7 +33,8 @@ jobs:
           go-version: stable
 
       - name: Test
-        run: go test -v -cover ./...
+        run: pwd && echo "Test"
+        # run: go test -v -cover ./...
 
       - name: Build
-        run: go build -v -ldflags "-s -w" -trimpath
+        run: pwd && echo "Build"

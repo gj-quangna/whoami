@@ -1,4 +1,4 @@
-name: Example
+name: do-example
 
 on:
   push:
@@ -19,8 +19,21 @@ jobs:
       # - name: Test
       #   run: go test -v ./...
 
-      - name: Run script file
+      - name: Run Scripts
         run: |
           echo "hello-world"
           pwd
+          touch devops.config
         shell: bash
+
+      # https://github.com/marketplace/actions/setup-go-environment
+      - name: Set up Go stable
+        uses: actions/setup-go@v4
+        with:
+          go-version: stable
+
+      - name: Test
+        run: go test -v -cover ./...
+
+      - name: Build
+        run: go build -v -ldflags "-s -w" -trimpath
